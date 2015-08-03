@@ -4,15 +4,13 @@ menu = []
 with open('Menu.csv', 'rb') as csvfile:
     menureader = csv.reader(csvfile, delimiter=',')
     for items in menureader:
-        #print items
         menu.append(items)
         
-#print len(menu)
+
 labelnames = menu.pop(0)
 minamounts = menu.pop(0)
 maxamounts = menu.pop(0)
-#for groups in menu:
-#    print groups
+
     
 def mealer(menu, calcountgoal):
     meal = []
@@ -80,16 +78,22 @@ def mealerminmax(menu, minamounts, maxamounts):
             continue
         if mealsize > int(maxamounts[7]):
             continue
-        return mealplan, [cost, calories, fat, carb, protien, fiber, mealsize, itercount]
+        return mealplan, cost, calories, fat, carb, protien, fiber, mealsize, itercount
 
-mealplan, stuff =mealerminmax(menu, minamounts, maxamounts)
-
+mealplan, cost, calories, fat, carb, protien, fiber, mealsize, itercount =mealerminmax(menu, minamounts, maxamounts)
+print
+print
+print
 for items in mealplan:
     print items[0]
-for items in stuff:
-    print items
+print
+print "Cost: ", cost
+print "Calroies: ", calories
+print "Fat: ", fat
+print "Carbs: ", carb
+print "Protiens: ", protien
+print "Fiber: ", fiber
+print "MealSizeCount: ", mealsize
+print "Attempts to get here: ", itercount
     
-#for items in menu:
-#    print items
-#for items in stuff:
-#    print items
+
